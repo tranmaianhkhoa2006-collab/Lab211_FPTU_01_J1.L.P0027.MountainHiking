@@ -5,6 +5,7 @@ import Model.Student;
 import Utils.ViewHandler;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  *
@@ -50,7 +51,7 @@ public class StatisticList {
         return statisticListInstance;
     }
     //use big O for O(1) time complexity in searching
-    public StatisticList statisticalize(Collection<Student> studentList) {
+    public StatisticList statisticalize(List<Student> studentList) {
         this.statisticList.clear();
        
         for (Student student : studentList) {

@@ -60,7 +60,7 @@ public class FileIOHandler<E> {
             return returnValue;
         } 
         catch (IOException e) {
-            FileIOHandler.logWriter(e.getMessage());
+            FileIOHandler.logWriter(e+"-"+e.getMessage());
         }
         return returnValue;
     }
@@ -78,7 +78,7 @@ public class FileIOHandler<E> {
 
         } 
         catch (IOException | ClassNotFoundException e) {
-            FileIOHandler.logWriter(e+"-"+e.getMessage()+"\n");
+            FileIOHandler.logWriter(e+"-"+e.getMessage());
         }
 
         return (List<E>) readFromFileContent;

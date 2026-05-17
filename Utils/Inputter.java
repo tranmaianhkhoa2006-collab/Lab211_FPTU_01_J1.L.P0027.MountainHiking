@@ -1,7 +1,7 @@
 package Utils;
 
 import Controller.MountainList;
-import Model.HeaderType;
+import Model.MenuHeaderType;
 import java.util.Scanner;
 
 /**
@@ -25,7 +25,7 @@ public class Inputter {
                 count++;
             
                if(count>3){
-                   ViewHandler.displayMenu(MenuContainer.getInstance().createYesNoMenu().getMenu(),MenuContainer.getHeader(HeaderType.YES_NO_MENU_HEADER));
+                   ViewHandler.displayMenu(MenuContainer.getInstance().createYesNoMenu().getMenu(),MenuContainer.getHeader(MenuHeaderType.YES_NO_MENU_HEADER));
                    int choice = inputChoice("Do you want of continue?: ",0, 1);
                    if(choice == 0){
                        count =0;
@@ -99,7 +99,7 @@ public class Inputter {
                 count++;
             
                if(count>3){
-                   ViewHandler.displayMenu(MenuContainer.getInstance().createYesNoMenu().getMenu(),MenuContainer.getHeader(HeaderType.YES_NO_MENU_HEADER));
+                   ViewHandler.displayMenu(MenuContainer.getInstance().createYesNoMenu().getMenu(),MenuContainer.getHeader(MenuHeaderType.YES_NO_MENU_HEADER));
                    int choice = inputChoice("Do you want of continue?: ",0, 1);
                    if(choice == 0){
                        count =0;
@@ -109,7 +109,7 @@ public class Inputter {
                    }
                }
                
-             peakCode = Inputter.inputString("Input peak code (Format: MT[NO.Mountain]): ").toUpperCase();
+             peakCode = Inputter.inputString("Input peak code (Format: MT[NO.Mountain] eg:MT01,MT13,..): ").toUpperCase();
              
              isValidPeakCode = mountainList.isValidPeakCode(peakCode);
              if(!isValidPeakCode){

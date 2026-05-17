@@ -1,6 +1,6 @@
 package Utils;
 
-import Model.HeaderType;
+import Model.MenuHeaderType;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -30,7 +30,7 @@ public class MenuContainer {
          return menuContainerInstance;
      }
      
-     public static String getHeader(HeaderType headerType){
+     public static String getHeader(MenuHeaderType headerType){
          String header = 
              ViewHandler.lineBreak(MenuContainer.HEADER_WIDTH) +
              String.format(MenuContainer.PATTERN_OF_MENU,headerType.getTitle())+
@@ -60,7 +60,7 @@ public class MenuContainer {
          menuOption.add("Update peak code for student");
          menuOption.add("Update phone number");
          menuOption.add("Update email");
-         menuOption.add("Change student id");
+         menuOption.add("Change student id to update");
          return menuContainerInstance;
      }
      

@@ -32,12 +32,12 @@ public class StudentManager {
     }
 
     public void setSaveStatus(){
-        
+        isSaved = true;
     }
   
     public static final String TABLE_HEADER =
       ViewHandler.lineBreak(130) +
-      ViewHandler.attributeOfStudentList("Student id","Name","Email","Phone","PeakCode","fee") +
+      ViewHandler.attributeOfStudentList("Student id","Name","Email","Phone","PeakCode","Fee") +
       ViewHandler.lineBreak(130);
     
       public String getPathFile(){

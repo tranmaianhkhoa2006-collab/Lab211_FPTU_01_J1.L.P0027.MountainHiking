@@ -27,7 +27,7 @@ public class Student implements Serializable{
           this.campusCode = studentID.substring(0, 2);
           this.peakCode = peakCode;
           if(isViettelOrVina)
-                this.tuitionFee = Student.DEFAULT_FEE*(1-36/100);
+                this.tuitionFee = Student.DEFAULT_FEE*(1-(36.0/100.0));
           else 
                 this.tuitionFee = Student.DEFAULT_FEE;
       }
@@ -89,7 +89,7 @@ public class Student implements Serializable{
     }
 
     public double getTuitionFee() {
-        return tuitionFee;
+        return this.tuitionFee;
     }
     
     @Override
@@ -98,7 +98,8 @@ public class Student implements Serializable{
                    "Name      : "+ this.name+"\n"+
                    "Phone     : "+ this.phoneNumber +"\n"+
                    "Mountain  : "+ this.peakCode+"\n"+
-                   "Fee       : "+ ViewHandler.getVietnamMoneyFormat(tuitionFee)+"\n";
+                   "Email     : "+ this.email+"\n"+
+                   "Fee       : "+ ViewHandler.getVietnamMoneyFormat(this.tuitionFee)+"\n";
                 
                         
     }

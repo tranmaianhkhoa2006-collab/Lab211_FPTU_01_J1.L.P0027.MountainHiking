@@ -1,6 +1,6 @@
 package Controller;
 
-import Model.HeaderType;
+import Model.MenuHeaderType;
 import Model.Mountain;
 import Model.Student;
 import Utils.Acceptable;
@@ -25,6 +25,7 @@ public class Controller {
      }
      
      public void processOption(int choice){
+         ViewHandler.fakeClearScreen();
          
          switch(choice){
              case 0:
@@ -72,10 +73,10 @@ public class Controller {
      
      public void exitProgram(){
          if(!studentList.isSaved()){
-             ViewHandler.printError("You did not save current data!\nDo you want to save before leaving?");
-             ViewHandler.displayMenu(
-                     MenuContainer.getInstance().createYesNoMenu().getMenu(),
-                     MenuContainer.getHeader(HeaderType.YES_NO_MENU_HEADER));
+             ViewHandler.printError("You did not save current data!\n");
+             ViewHandler.print("Do you want to save before leaving?\n");
+             ViewHandler.displayMenu(MenuContainer.getInstance().createYesNoMenu().getMenu(),
+                     MenuContainer.getHeader(MenuHeaderType.YES_NO_MENU_HEADER));
              int choice = Inputter.inputChoice("Input your choice: ", 0, 1);
              switch(choice){
                  case 0:
@@ -96,7 +97,7 @@ public class Controller {
          do{
              
               if(++count>3){
-                   ViewHandler.displayMenu(MenuContainer.getInstance().createYesNoMenu().getMenu(),MenuContainer.getHeader(HeaderType.YES_NO_MENU_HEADER));
+                   ViewHandler.displayMenu(MenuContainer.getInstance().createYesNoMenu().getMenu(),MenuContainer.getHeader(MenuHeaderType.YES_NO_MENU_HEADER));
                    int choice = inputChoice("Do you want of continue?: ",0, 1);
                    if(choice == 0)
                        count =0;
@@ -129,6 +130,8 @@ public class Controller {
          
          
          String peakCode= Inputter.inputPeakCode(mountainList);
+         if(peakCode==null)
+             return;
          
          if(studentList.add(new Student(id, name, phoneNumber, email, peakCode, isViettelOrVina)))
              ViewHandler.print("Add student successfully!\n");
@@ -142,12 +145,14 @@ public class Controller {
             do{
                 Student foundStudent = studentList.searchByID(searchId);
                  if (foundStudent == null) {
+                     ViewHandler.printError("There is no student with this id\n");
                     return;
                 }
                 
-                ViewHandler.print(foundStudent.toString()+"\n");
+                 ViewHandler.fakeClearScreen();
+                ViewHandler.print(ViewHandler.lineBreak(40)+foundStudent.toString()+ViewHandler.lineBreak(40));
                 
-                ViewHandler.displayMenu(MenuContainer.getInstance().createUpdateStudentMenu().getMenu(), MenuContainer.getHeader(HeaderType.UPDATE_STUDENT_MENU_HEADER));
+                ViewHandler.displayMenu(MenuContainer.getInstance().createUpdateStudentMenu().getMenu(), MenuContainer.getHeader(MenuHeaderType.UPDATE_STUDENT_MENU_HEADER));
                 choice = Inputter.inputChoice("Input your choice: ", 0, MenuContainer.getInstance().getNumberOfOptions() - 1);
                 
 
@@ -231,9 +236,8 @@ public class Controller {
                  ViewHandler.lineBreak(MenuContainer.HEADER_WIDTH));
          
          ViewHandler.print("Are you sure? ");
-         ViewHandler.displayMenu(
-                 MenuContainer.getInstance().createYesNoMenu().getMenu(),
-                 MenuContainer.getHeader(HeaderType.YES_NO_MENU_HEADER)
+         ViewHandler.displayMenu(MenuContainer.getInstance().createYesNoMenu().getMenu(),
+                 MenuContainer.getHeader(MenuHeaderType.YES_NO_MENU_HEADER)
                  );
          
          int choice = Inputter.inputChoice("Your choice: ", 0, 1);
@@ -309,7 +313,8 @@ public class Controller {
      public void saveData(){
           FileIOHandler<Student> stuđentFileIOHandler = new FileIOHandler<>();
           stuđentFileIOHandler.writeFileObject(studentList.getPathFile(), studentList.getAllStudentList());
-          ViewHandler.print("Save successfully!");
+          studentList.setSaveStatus();
+          ViewHandler.print("Save successfully!\n");
      }
      
      
