@@ -21,7 +21,7 @@ public class Student implements Serializable{
       
       public Student(String studentID,String name,String phoneNumber,String email,String peakCode,boolean isViettelOrVina){
           this.studentID = studentID.toUpperCase();
-          this.name = name;
+          this.name = ViewHandler.nameFormatter(name);
           this.phoneNumber = phoneNumber;
           this.email = email;
           this.campusCode = studentID.substring(0, 2);
@@ -48,7 +48,7 @@ public class Student implements Serializable{
     }
 
     public Student setName(String name) {
-        this.name = name;
+        this.name = ViewHandler.nameFormatter(name);
         return this;
     }
 
@@ -60,7 +60,7 @@ public class Student implements Serializable{
         
         this.phoneNumber = phoneNumber;
         if(Acceptable.isValid(phoneNumber, Acceptable.VIETTEL_VALID)||Acceptable.isValid(phoneNumber, Acceptable.VNPT_VALID))
-                this.tuitionFee = Student.DEFAULT_FEE*(1-36/100);
+                this.tuitionFee = Student.DEFAULT_FEE*(1-36.0/100.0);
           else 
                 this.tuitionFee = Student.DEFAULT_FEE;
         return this;

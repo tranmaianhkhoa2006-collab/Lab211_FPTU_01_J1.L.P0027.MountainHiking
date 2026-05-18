@@ -4,7 +4,7 @@ package Model;
  *
  * @author admin
  */
-public class Statistic {
+public class Statistic implements Comparable<Statistic>{
      private String peakCode;
      private int numberOfStudent;
      private double totalCost;
@@ -32,6 +32,13 @@ public class Statistic {
          this.totalCost+= studentCost;
          return this;
      }
+
+    @Override
+    public int compareTo(Statistic o) {
+        return this.peakCode.compareTo(o.peakCode);
+    }
+     
+     
      
      
 }

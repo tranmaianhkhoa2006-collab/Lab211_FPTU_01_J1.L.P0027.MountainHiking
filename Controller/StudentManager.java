@@ -5,6 +5,8 @@ import Utils.Acceptable;
 import Utils.FileIOHandler;
 import Utils.ViewHandler;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -112,7 +114,7 @@ public class StudentManager {
     
     //create a copy of studentList.values
     public List<Student> getAllStudentList(){
-        return new ArrayList<>(studentList.values());
+        return new ArrayList (Collections.unmodifiableCollection(studentList.values()));
     }
     
     //Campus code filter

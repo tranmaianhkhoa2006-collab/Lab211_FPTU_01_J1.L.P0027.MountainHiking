@@ -73,10 +73,11 @@ public class Controller {
      
      public void exitProgram(){
          if(!studentList.isSaved()){
-             ViewHandler.printError("You did not save current data!\n");
-             ViewHandler.print("Do you want to save before leaving?\n");
-             ViewHandler.displayMenu(MenuContainer.getInstance().createYesNoMenu().getMenu(),
-                     MenuContainer.getHeader(MenuHeaderType.YES_NO_MENU_HEADER));
+             ViewHandler.print("Do you want to save data before leaving?\n");
+             ViewHandler.displayMenu(
+                     MenuContainer.getInstance().createYesNoMenu().getMenu(),
+                     MenuContainer.getHeader(MenuHeaderType.YES_NO_MENU_HEADER)); 
+             
              int choice = Inputter.inputChoice("Input your choice: ", 0, 1);
              switch(choice){
                  case 0:
@@ -115,7 +116,7 @@ public class Controller {
          }
          while(isDuplicated);
         
-         String name = ViewHandler.nameFormatter(inputStringAndLoop("Input student name (2 -> 20 characters): ", Acceptable.NAME_VALID));
+         String name = inputStringAndLoop("Input student name (2 -> 20 characters): ", Acceptable.NAME_VALID);
          if(name == null)
                  return;
          
@@ -299,8 +300,15 @@ public class Controller {
    
      public void statisticQuantityByLocation(){
          StatisticList statistics = StatisticList.getInstance();
-         statistics.statisticalize(studentList.getAllStudentList()).show();
-         
+         List<Student> listOfStudent = studentList.getAllStudentList();
+         if(listOfStudent.size()==0){
+             ViewHandler.print("There is no registration yet!\n");
+             return;
+         }
+             
+             
+             statistics.statisticalize(listOfStudent).show();
+         ViewHandler.print("Note: The remaining mountain(s) that are/is not display, has its number of students is Zero\n");
      }
      
      public void displayListOfPeakInfo(){
@@ -308,6 +316,7 @@ public class Controller {
          for(Mountain mountain: mountainList.getListOfMountain()){
               ViewHandler.print(mountain.toString()+ViewHandler.lineBreak(150));
          }
+        
      }
      
      public void saveData(){

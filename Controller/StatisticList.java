@@ -6,6 +6,8 @@ import Utils.ViewHandler;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  *
@@ -31,8 +33,10 @@ public class StatisticList {
             + ViewHandler.lineBreak(StatisticList.TABLE_WIDTH);
 
     public void show() {
+         // for sorting
+            Set<Statistic> showSet = new TreeSet<>(statisticList.values());
                ViewHandler.print(TABLE_HEADER);
-         for(Statistic statisInstance :statisticList.values()){
+         for(Statistic statisInstance : showSet){
               String row = ViewHandler.
                       attributeOfStatisticList(
                               statisInstance.getPeakCode(), 
