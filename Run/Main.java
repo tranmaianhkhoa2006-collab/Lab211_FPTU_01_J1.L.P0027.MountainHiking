@@ -8,7 +8,7 @@ import Utils.ViewHandler;
 
 /**
  *
- * @author admin
+ * @author Tran_Mai_Anh_Khoa_SE204826_@COPYRIGHT2026
  */
 public class Main {
     public static void main(String[] args) {
