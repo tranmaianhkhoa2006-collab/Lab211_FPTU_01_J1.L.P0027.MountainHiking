@@ -27,7 +27,7 @@ public class Student implements Serializable{
           this.campusCode = studentID.substring(0, 2);
           this.peakCode = peakCode;
           if(isViettelOrVina)
-                this.tuitionFee = Student.DEFAULT_FEE*(1-(36.0/100.0));
+                this.tuitionFee = Student.DEFAULT_FEE*(1-(35.0/100.0));
           else 
                 this.tuitionFee = Student.DEFAULT_FEE;
       }
@@ -60,7 +60,7 @@ public class Student implements Serializable{
         
         this.phoneNumber = phoneNumber;
         if(Acceptable.isValid(phoneNumber, Acceptable.VIETTEL_VALID)||Acceptable.isValid(phoneNumber, Acceptable.VNPT_VALID))
-                this.tuitionFee = Student.DEFAULT_FEE*(1-36.0/100.0);
+                this.tuitionFee = Student.DEFAULT_FEE*(1-35.0/100.0);
           else 
                 this.tuitionFee = Student.DEFAULT_FEE;
         return this;
