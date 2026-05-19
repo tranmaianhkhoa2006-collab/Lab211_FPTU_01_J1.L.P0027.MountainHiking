@@ -48,7 +48,7 @@ public interface Acceptable {
            
            int minLength = minLengthString.length();
            boolean isEqual = false;
-           for(int i=0;i<maxLengthString.length()-minLength;i++){
+           for(int i=0;i<=maxLengthString.length()-minLength;i++){
               isEqual = minLengthString.equalsIgnoreCase(maxLengthString.substring(i, i+minLength));
               if(isEqual){
                   break;
