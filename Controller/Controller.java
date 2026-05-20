@@ -29,7 +29,7 @@ public class Controller {
          
          switch(choice){
              case 0:
-                exitProgram();
+                saveBeforeExitProgram();
                 break;
                  
              case 1:    
@@ -71,7 +71,7 @@ public class Controller {
          ViewHandler.fakeClearScreen();
      }
      
-     public void exitProgram(){
+     public void saveBeforeExitProgram(){
          if(!studentList.isSaved()){
              ViewHandler.print("Do you want to save data before leaving?\n");
              ViewHandler.displayMenu(
@@ -86,6 +86,8 @@ public class Controller {
                  case 1:
                      return;
              }
+             
+             
              
          }
          
@@ -125,7 +127,7 @@ public class Controller {
                  return;
          
          boolean isViettelOrVina = Acceptable.isValid(phoneNumber, Acceptable.VIETTEL_VALID) ||  Acceptable.isValid(phoneNumber, Acceptable.VNPT_VALID);
-         String email = inputStringAndLoop("Input student email (Domain name: @fpt): ",Acceptable.EMAIL_VALID);
+         String email = inputStringAndLoop("Input student email (Domain name: @fpt)(Ex: tranmaianhkhoa@fpt.edu.vn) : ",Acceptable.EMAIL_VALID);
          if(email == null)
                  return;
          
@@ -142,7 +144,9 @@ public class Controller {
         int choice =-1;
         while (true) {
             String searchId = Inputter.inputStringAndLoop("Input id to update: ", Acceptable.STUDENT_ID);
-             
+             if(searchId == null)
+                 return;
+                         
             do{
                 Student foundStudent = studentList.searchByID(searchId);
                  if (foundStudent == null) {
@@ -176,7 +180,7 @@ public class Controller {
                 }
             }
             while(choice !=5);
-        }
+        }// while true
     }
      
      public void updateStudentName(Student foundStudent){
@@ -227,7 +231,7 @@ public class Controller {
          
          Student foundStudent = studentList.searchByID(deletedID);
          if(foundStudent==null){
-             ViewHandler.printError("There is no student with this id\n");
+             ViewHandler.printError("This student has not registered yet.\n");
              return;
          }
          
@@ -262,7 +266,7 @@ public class Controller {
          
          List<Student> nameSearchList = studentList.searchByName(name);
          if(nameSearchList.size()==0){
-             ViewHandler.printError("There is no student with the similar name\n");
+             ViewHandler.printError("No one matches the search criteria!\n");
              return;
          }
          ViewHandler.showStudentList(nameSearchList);
@@ -277,7 +281,7 @@ public class Controller {
          
          List<Student> filterList = studentList.filterByCampusCode(campusCode);
          if(filterList.size()==0){
-             ViewHandler.printError("There is no student in this campus that join mountain hiking!\n");
+             ViewHandler.printError("No students have registered under this campus. \n");
              return;
          }
        ViewHandler.print(StudentManager.TABLE_HEADER);
@@ -301,7 +305,7 @@ public class Controller {
      public void statisticQuantityByLocation(){
          StatisticList statistics = StatisticList.getInstance();
          List<Student> listOfStudent = studentList.getAllStudentList();
-         if(listOfStudent.size()==0){
+         if(listOfStudent.isEmpty()){
              ViewHandler.print("There is no registration yet!\n");
              return;
          }

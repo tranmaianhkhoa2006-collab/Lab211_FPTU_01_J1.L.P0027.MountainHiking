@@ -5,7 +5,6 @@ import Utils.Acceptable;
 import Utils.FileIOHandler;
 import Utils.ViewHandler;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -71,7 +70,9 @@ public class StudentManager {
     
     //search by id
     public Student searchByID(String id){
+        
         return studentList.get(id.toUpperCase());
+        
     }
      
     //search by partial name
